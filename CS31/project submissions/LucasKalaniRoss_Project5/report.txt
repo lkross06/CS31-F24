@@ -1,0 +1,102 @@
+Lucas Kalani Ross
+David Smallberg
+CS31 LEC 2
+Nov 18, 2024
+
+The main problem I had was figuring out how to not double-count certain letters as both stars and planets, or even just double-counting certain letters as two planets. I used the examples on the spec (EGRET compared with 9 different guesses) and ran into notable difficulty with EERIE and RAGE because of how the planets were counted. I ended up just copying the chosen word and trial word into new C strings and modifying those (replacing the letters with non-alpha lowercase characters, I used 'X') as I counted stars and planets. I'm sure there's a more space-efficient solution, though.
+
+===================
+
+int runOneRound(const char words[][7], int nWords, int wordnum) pseudocode:
+
+if number of words is negative,
+	return -1
+if index of chosen word is outside the bounds of word list,
+	return -1
+locate and save chosen word in word list
+save chosen word length
+set round score to 0
+repeatedly:
+	set number of planets to 0
+	set number of stars to 0
+	write a prompt for trial word
+	read trial word from input buffer
+	save trial word length
+	if trial word not 4-6 lowercase letters,
+		write that trial word must be 4-6 lowercase letters
+		continue
+	else if trial word not in word list,
+		write that trial word is unknown
+		continue
+	otherwise,
+		increment round score
+	if trial word is chosen word,
+		break
+	save copy of trial word
+	save copy of chosen word
+	for every index in trial word:
+		if letter at that index matches for trial and chosen word,
+			increment number of stars
+			cross off that letter in trial word copy
+			cross off that letter in chosen word copy
+	for every index in trial word:
+		save pointer to first character in chosen word copy that matches character at that index in trial word
+		if pointer not null pointer,
+			save index of character in chosen word copy that pointer points to
+			if character at new index in chosen word copy not crossed off and character at index in trial word copy not crossed off,
+				increment number of planets
+				cross off character at new index in chosen word copy
+				cross off character at index in trial word copy
+	write number of stars and number of planets
+return round score
+
+===================
+
+void updateStatistics(int curr_score, int* min, int* max, double* sum, int rounds_played) psuedocode:
+
+if minimum score is -1,
+	set minimum score to current score
+if maximum score is -1,
+	set maximum score to current score
+if current score less than minimum score,
+	set minimum score to current score
+if current score greater than maximum score,
+	set maximum score to current score
+add current score to sum
+set decimal formatting to two degrees of precision
+write average score as sum divided by total rounds played, minimum score, maximum score 
+	
+===================
+
+int main() pseudocode:
+
+download word list
+if download fails,
+	write error message
+	return 0
+write a prompt for number of rounds
+read number of rounds
+if number of rounds is negative,
+	write error message
+	return 0
+ignore next 10000 characters or until new line character in input buffer
+set minimum score to -1
+set maximim score to -1
+set sum to 0.0
+for each round:
+	write round number
+	generate and save random index between 0 and number of words - 1
+	locate chosen word in word list
+	write length of chosen word
+	run one round and save round score
+	if round score is -1,
+		write error message
+		return 0
+	if round score is 1,
+		write special round score message
+	otherwise,
+		write generic round score message
+	update game statistics and write current game statistics
+return 0
+
+

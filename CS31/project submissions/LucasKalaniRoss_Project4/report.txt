@@ -1,0 +1,80 @@
+Lucas Kalani Ross
+David Smallberg
+CS31 LEC 2
+Nov 6, 2024
+
+One obstacle I ran into while developing the flip() function was swapping two values in the array. I was also trying not to use any additional arrays so, using my new knowledge of pointers, I worked on paper how I would swap two items in an array. The separate() function was also a bit difficult, since I was trying not to use an additional array for that as well. I tried to develop a solution that was efficient (i.e. did not evaluate / perform the same operations multiple times) and ended up creating a helper function to clean up my code.
+
+string a[6] = {"a", "b", "c", "d", "e", "f"};
+    //test appendToAll() functionality, also see if it returns n on success
+    assert(appendToAll(a, 5, "x") == 5 && a[2] == "cx" && a[4] == "ex");
+    //test appendToAll() handling bad arguments and not changing array
+    assert(appendToAll(a, -12, "y") == -1 && a[0] == "ax" && a[2] == "cx");
+    //test appendToAll() only editing subarray given
+    assert(appendToAll(a, 3, "n") == 3 && a[2] == "cxn" && a[3] == "dx");
+    
+    string b[6] = {"a", "b", "c", "d", "e", "f"};
+    //test lookup() for functionality and case-sensitivity
+    assert(lookup(b, 6, "c") == 2 && lookup(b, 6, "C") == -1);
+    //test lookup() handling bad arguments
+    assert(lookup(b, -22, "a") == -1);
+    //test lookup() handling target not found
+    assert(lookup(b, 2, "d") == -1 && lookup(b, 6, "t") == -1);
+    
+    string c[6] = {"a", "d", "c", "d", "f", "f"};
+    //test positionOfMax() functionality, only finding first occurence, handling zero length array
+    assert(positionOfMax(c, 6) == 4 && positionOfMax(c, 3) == 1 && positionOfMax(c, 0) == -1);
+    //test positionOfMax() handling bad arguments
+    assert(positionOfMax(c, -12) == -1);
+    
+    string d[4] = {"a", "b", "c", "d"};
+    //test rotateLeft() functionality
+    assert(rotateLeft(d, 4, 1) == 1 && d[1] == "c" && d[3] == "b");
+    //test rotateLeft() handling bad arguments and not changing array
+    assert(rotateLeft(d, -11, 0) == -1 && d[1] == "c" && d[3] == "b");
+    
+    string e[5] = {"b", "b", "c", "d", "d"};
+    string f[3] = {"b", "b", "b"};
+    //test countRuns() functionality
+    assert(countRuns(e, 5) == 3 && countRuns(f, 3) == 1 && countRuns(f, 0) == 0);
+    //test countRuns() handling bad arguments
+    assert(countRuns(e, -22) == -1);
+    
+    string g[4] = {"a", "b", "c", "d"};
+    string h[5] = {"a", "b", "c", "d", "e"};
+    //test flip() functionality
+    assert(flip(g, 4) == 4 && g[0] == "d" && g[2] == "b");
+    assert(flip(h, 5) == 5 && h[2] == "c" && h[1] == "d");
+    //test flip() handling bad arguments and not changing array
+    assert(flip(g, -1) == -1 && g[0] == "d");
+    
+    string i[5] = {"a", "b", "c", "e", "d"};
+    string j[4] = {"a", "b", "c", "d"};
+    //test differ() functionality
+    assert(differ(i, 5, j, 4) == 3 && differ(i, 4, j, 3) == 3);
+    //test differ() handling bad arguments
+    assert(differ(i, -2, j, 4) == -1 && differ(i, 3, j, -1) == -1);
+    
+    string k[4] = {"a", "b", "c", "d"};
+    string l[2] = {"c", "d"};
+    //test subsequence() functionality
+    assert(subsequence(k, 4, l, 2) == 2 && subsequence(k, 2, l, 1) == -1);
+    //test subsequence() handling bad arguments
+    assert(subsequence(k, -1, l, 2) == -1 && subsequence(k, 4, l, -2) == -1);
+    
+    string m[4] = {"a", "b", "c", "d"};
+    string n[4] = {"e", "f", "g", "b"};
+    //test lookupAny() functionality
+    assert(lookupAny(m, 4, n, 4) == 1 && lookupAny(m, 4, n, 3) == -1);
+    //test lookupAny() handling bad arguments
+    assert(lookupAny(m, -5, n, 3) == -1 && lookupAny(m, 4, n, -2) == -1);
+    
+    string o[5] = {"e", "a", "d", "c", "b"};
+    string p[4] = {"e", "a", "d", "f"};
+    string q[5] = {"d", "e", "c", "a", "b"};
+    //test separate() functionality
+    assert(separate(o, 5, "c") == 2 && o[1] < "c" && o[3] >= "c");
+    assert(separate(p, 4, "c") == 1 && o[0] < "c" && o[2] >= "c");
+    //test separate() handling bad arguments
+    assert(separate(q, -1, "r") == -1);
+

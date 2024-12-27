@@ -1,0 +1,22 @@
+Lucas Kalani Ross
+David Smallberg
+CS31 LEC 2
+Oct 18, 2024
+
+The only obstacles I ran into came up while working on the conditionals to charge the customer the right amount for the car rental. I wanted to define all of my constants (i.e. the charge-per-mile rate for 101-600 miles) but it only made the boolean statements more difficult because I had to visualize what numbers I was referring to.
+
+100, 102, 5, "sadfs", "n", 11			test correct output format + correct charge
+100, 1022, 3, "sadfs", "n", 11			test correct charge
+100, 302, 1, "sadfs", "y", 11			test correct charge for luxury car
+100, 302, 1, "sadfs", "y", 1			test correct charge for luxury car in winter	
+100, 100, 5, "sadfs", "n", 6			test correct charge for 0 miles driven
+100, 102, 0, "sadfs", "n", 11			test correct charge for 0 rental days
+100, -102, 5, "sadfs", "n", 11			test for error (odo end < odo start)
+100, -102, -34, "sadfs", "asdfdgg", 11		test for error (odo end < odo start ONLY)
+-100, 102, -5, "sadfs", "Y", 11			test for error (odo start < 0 ONLY)
+100, 102, -1, "", "N", 14			test for error (rental days < 0 ONLY)
+100, 102, 5, "sadfs", "N", 99			test for error (luxury != "n" or "y" ONLY)
+100, 102, 5, "", "N", 99			test for error (name empty ONLY)
+100, 102, 5, "sadfs", "adgasd", -123		test for error (luxury invalid ONLY)
+100, 102, 5, "sadfs", "n", -3123		test for error (months < 1)
+

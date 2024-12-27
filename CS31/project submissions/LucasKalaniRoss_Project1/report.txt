@@ -1,0 +1,14 @@
+Lucas Kalani Ross
+David Smallberg
+CS31 LEC 2
+Oct 8, 2024
+
+Inputting 0 surveyed registered voters, 10 Trarris supporters, and 100 Hump supporters causes the program to assert that inf% of the surveyed voters say they will vote for Trarris and inf% of the surveyed voters will vote for Hump.
+
+The error in logic_error.cpp is changing the ">" to "<" on line 30, which flips the boolean statement and causes the program to erroneously predict that the less popular candidate will win the election.
+
+The first error in compile_error.cpp is not including a semicolon at the end of line 28. The second error is using an undeclared variable "asdf" in the boolean statement on line 32.
+
+Running compile_error.cpp using g31 shows the two previously stated compile errors, as well as a warning that the pctHump variable was declared and defined but never used. This warning was a byproduct of the second error, where I changed the pctHump variable to "asdf". Also, whenever original.cpp is run using the inputs 100, 50, and 50 causes the program to predict that Hump will win the election, despite the turnout being equal.
+
+ 

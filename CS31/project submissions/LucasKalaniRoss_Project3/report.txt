@@ -1,0 +1,59 @@
+One challenge I had was coming up with efficient test cases for every type of error in the poll data string that the program might encounter. I also had a bit of trouble with converting strings to numbers so I had to review my notes about character and integer codes.
+
+===================
+
+hasRightSyntax() pseudocode:
+
+for every character in the poll data string:
+	convert that character to uppercase
+until the end of the poll data string:
+	if the start of the next state prediction is too short,
+		return false
+	if the party code is not a letter,
+		return false
+	if there is not a digit after the party code,
+		return false
+	check if its a two-digit number
+	if the state code is not a valid uppercase state code,
+		return false
+	proceed to the next state prediction
+return true
+
+===================
+
+computeVotes() pseudocode:
+
+if the poll data string has invalid syntax,
+	return 1
+if the party code character is not a letter,
+	return 3
+for every character in the poll data string:
+	convert that character to uppercase
+convert the party code character to uppercase
+store the initial value of vote count
+reset vote count to zero
+until the end of the poll data string:
+	if the prediction is zero votes,
+		reset vote count to its initial value
+		return 2
+	if the party code matches the given party code,
+		add the prediction to vote count
+	proceed to next state prediction
+return 0
+
+===================
+
+R40TXD54CA     test to see if hasRightSyntax works for correct syntax
+D54ca          test to see if lowercase converts to uppercase
+43ms           test to see if hasRightSyntax works for incorrect syntax (no state code)
+r666ms         test to see if hasRightSyntax identifies incorrect three-digit number
+R40TYD5mA      test to see if hasRightSyntax identifies wrong state code
+RTXD54CA       test to see if hasRightSyntax identifies no digits
+(empty string) test to see if hasRightSyntax works for empty string (it should)
+     
+v = 10, computeVotes("R40TXD54CA", 'R', v)    test to see if computeVotes correctly computes and changes v, and returns 0 for success
+v = 10, computeVotes("R40TXD54CAr09ny", 'R', v)    test to see if computeVotes correctly computes and changes v, and returns 0 for success
+v = 10, computeVotes("D5a", 'R', v) test to see if computeVotes correctly returns 1 for incorrect syntax and does not change v
+v = 10, computeVotes("R40TXD0CA", 'R', v) test to see if computeVotes correctly returns 2 for zero state prediction and does not change v
+v = 10, computeVotes("R40TXD0CA", '3', v) test to see if computeVotes correctly returns 3 for invalid party code and does not change v
+v = 10, computeVotes("", '#', v) test to see if computeVotes correctly returns 2 for invalid party code
