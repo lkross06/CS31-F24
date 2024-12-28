@@ -8,4 +8,4 @@
 
 **Final Grade:** A
 
-This course focused on an introduction to the C++ programming languages. Being an extension of the C programming language, part of the coursework involved learning C as well.
+This course focused on an introduction to the C++ programming language. Being an extension of the C programming language, part of the coursework involved learning C as well.
