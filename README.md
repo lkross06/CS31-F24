@@ -7,3 +7,5 @@
 **Instructor:** Professor David A. Smallberg
 
 **Final Grade:** A
+
+This course focused on an introduction to the C++ programming languages. Being an extension of the C programming language, part of the coursework involved learning C as well.
